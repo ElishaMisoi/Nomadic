@@ -63,6 +63,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidAsset Include="Assets\fa-solid.otf" />
+    <AndroidAsset Include="Assets\fa-brands.otf" />
+    <AndroidAsset Include="Assets\lato-bold.ttf" />
+    <AndroidAsset Include="Assets\lato-regular.ttf" />
+    <AndroidAsset Include="Assets\fa-regular.otf" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <None Include="Properties\AndroidManifest.xml" />
