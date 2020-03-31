@@ -34,5 +34,13 @@
     <string>Nomadic</string>
     <key>XSAppIconAssets</key>
     <string>Assets.xcassets/AppIcon.appiconset</string>
+    <key>UIAppFonts</key>
+	<array>
+		<string>lato-bold.ttf</string>
+		<string>lato-regular.ttf</string>
+		<string>fa-regular.otf</string>
+		<string>fa-solid.otf</string>
+		<string>fa-brands.otf</string>
+	</array>
 </dict>
 </plist>
