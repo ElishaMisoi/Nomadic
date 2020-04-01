@@ -1,5 +1,4 @@
-﻿using Nomadic.Themes;
-using System;
+﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -16,17 +15,14 @@ namespace Nomadic
 
         protected override void OnStart()
         {
-            ThemeHelper.GetSystemRequestedTheme();
         }
 
         protected override void OnSleep()
         {
-
         }
 
         protected override void OnResume()
         {
-
         }
     }
 }
