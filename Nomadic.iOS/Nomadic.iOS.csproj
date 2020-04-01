@@ -68,11 +68,6 @@
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <BundleResource Include="Resources\lato-regular.ttf" />
-    <BundleResource Include="Resources\fa-regular.otf" />
-    <BundleResource Include="Resources\fa-solid.otf" />
-    <BundleResource Include="Resources\fa-brands.otf" />
-    <BundleResource Include="Resources\lato-bold.ttf" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
