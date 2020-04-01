@@ -9,8 +9,75 @@
 
     <Application.Resources>
 
-        <!--  Application resource dictionary  -->
-        <ResourceDictionary Source="/Themes/LightTheme.xaml" />
+        <ResourceDictionary>
+
+            <OnPlatform x:Key="LatoRegular" x:TypeArguments="x:String">
+                <On Platform="Android" Value="lato-regular.ttf#Lato Regular" />
+                <On Platform="iOS" Value="Lato" />
+            </OnPlatform>
+
+            <OnPlatform x:Key="LatoBold" x:TypeArguments="x:String">
+                <On Platform="Android" Value="lato-bold.ttf#Lato Bold" />
+                <On Platform="iOS" Value="Lato" />
+            </OnPlatform>
+
+            <OnPlatform x:Key="FontAwesomeBrands" x:TypeArguments="x:String">
+                <On Platform="Android" Value="fa-brands.otf#Regular" />
+                <On Platform="iOS" Value="FontAwesome5Brands-Regular" />
+            </OnPlatform>
+
+            <OnPlatform x:Key="FontAwesomeSolid" x:TypeArguments="x:String">
+                <On Platform="Android" Value="fa-solid.otf#Regular" />
+                <On Platform="iOS" Value="FontAwesome5Free-Solid" />
+            </OnPlatform>
+
+            <OnPlatform x:Key="FontAwesomeRegular" x:TypeArguments="x:String">
+                <On Platform="Android" Value="fa-regular.otf#Regular" />
+                <On Platform="iOS" Value="FontAwesome5Free-Regular" />
+            </OnPlatform>
+
+            <OnPlatform x:Key="FontAwesomeLight" x:TypeArguments="x:String">
+                <On Platform="Android" Value="fa-light.otf#Light" />
+                <On Platform="iOS" Value="FontAwesome5Free-Light" />
+            </OnPlatform>
+
+            <Style TargetType="Label">
+                <Setter Property="FontFamily" Value="{StaticResource LatoRegular}" />
+                <Style.Triggers>
+                    <Trigger TargetType="Label" Property="FontAttributes" Value="Bold">
+                        <Setter Property="FontFamily" Value="{StaticResource LatoBold}" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
+            <Style TargetType="Entry">
+                <Setter Property="FontFamily" Value="{StaticResource LatoRegular}" />
+                <Style.Triggers>
+                    <Trigger TargetType="Entry" Property="FontAttributes" Value="Bold">
+                        <Setter Property="FontFamily" Value="{StaticResource LatoBold}" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
+            <Style TargetType="Editor">
+                <Setter Property="FontFamily" Value="{StaticResource LatoRegular}" />
+                <Style.Triggers>
+                    <Trigger TargetType="Editor" Property="FontAttributes" Value="Bold">
+                        <Setter Property="FontFamily" Value="{StaticResource LatoBold}" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
+            <Style TargetType="SearchBar">
+                <Setter Property="FontFamily" Value="{StaticResource LatoRegular}" />
+                <Style.Triggers>
+                    <Trigger TargetType="SearchBar" Property="FontAttributes" Value="Bold">
+                        <Setter Property="FontFamily" Value="{StaticResource LatoBold}" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
+        </ResourceDictionary>
 
     </Application.Resources>
 
