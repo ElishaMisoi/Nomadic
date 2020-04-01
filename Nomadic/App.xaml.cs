@@ -10,7 +10,7 @@ namespace Nomadic
         {
             InitializeComponent();
 
-            MainPage = new AppShell();
+            MainPage = new MainPage();
         }
 
         protected override void OnStart()
