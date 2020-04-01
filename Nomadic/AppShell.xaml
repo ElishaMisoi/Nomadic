@@ -4,63 +4,32 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-    xmlns:fontawesome="clr-namespace:FontAwesome"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:views="clr-namespace:Nomadic.Views.Pages"
     mc:Ignorable="d">
 
     <TabBar>
         <Tab Title="Feed">
-            <Tab.Icon>
-                <FontImageSource
-                    FontFamily="{StaticResource FontAwesomeSolid}"
-                    Glyph="{x:Static fontawesome:FontAwesomeIcons.Newspaper}"
-                    Size="20" />
-            </Tab.Icon>
             <ShellContent>
                 <views:MainFeed />
             </ShellContent>
         </Tab>
         <Tab Title="Interests">
-            <Tab.Icon>
-                <FontImageSource
-                    FontFamily="{StaticResource FontAwesomeSolid}"
-                    Glyph="{x:Static fontawesome:FontAwesomeIcons.Star}"
-                    Size="20" />
-            </Tab.Icon>
             <ShellContent>
                 <views:MyInterests />
             </ShellContent>
         </Tab>
         <Tab Title="Explore">
-            <Tab.Icon>
-                <FontImageSource
-                    FontFamily="{StaticResource FontAwesomeSolid}"
-                    Glyph="{x:Static fontawesome:FontAwesomeIcons.Search}"
-                    Size="20" />
-            </Tab.Icon>
             <ShellContent>
                 <views:Explore />
             </ShellContent>
         </Tab>
         <Tab Title="Local">
-            <Tab.Icon>
-                <FontImageSource
-                    FontFamily="{StaticResource FontAwesomeSolid}"
-                    Glyph="{x:Static fontawesome:FontAwesomeIcons.MapPin}"
-                    Size="20" />
-            </Tab.Icon>
             <ShellContent>
                 <views:Local />
             </ShellContent>
         </Tab>
-        <Tab Title="More">
-            <Tab.Icon>
-                <FontImageSource
-                    FontFamily="{StaticResource FontAwesomeSolid}"
-                    Glyph="{x:Static fontawesome:FontAwesomeIcons.EllipsisH}"
-                    Size="20" />
-            </Tab.Icon>
+        <Tab Title="Settings">
             <ShellContent>
                 <views:Settings />
             </ShellContent>
