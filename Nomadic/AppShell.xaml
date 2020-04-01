@@ -7,16 +7,6 @@
     xmlns:fontawesome="clr-namespace:FontAwesome"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:views="clr-namespace:Nomadic.Views.Pages"
-    Shell.BackgroundColor="{DynamicResource PageBackgroundColor}"
-    Shell.DisabledColor="{DynamicResource ShellDisabledColor}"
-    Shell.ForegroundColor="{DynamicResource ShellForegroundColor}"
-    Shell.NavBarHasShadow="False"
-    Shell.TabBarBackgroundColor="{DynamicResource ShellTabBarBackgroundColor}"
-    Shell.TabBarDisabledColor="{DynamicResource ShellTabBarDisabledColor}"
-    Shell.TabBarForegroundColor="{DynamicResource ShellTabBarForegroundColor}"
-    Shell.TabBarUnselectedColor="{DynamicResource ShellTabBarUnselectedColor}"
-    Shell.TitleColor="{DynamicResource ShellTitleColor}"
-    Shell.UnselectedColor="{DynamicResource ShellUnselectedColor}"
     mc:Ignorable="d">
 
     <TabBar>
@@ -64,11 +54,11 @@
                 <views:Local />
             </ShellContent>
         </Tab>
-        <Tab Title="Settings">
+        <Tab Title="More">
             <Tab.Icon>
                 <FontImageSource
                     FontFamily="{StaticResource FontAwesomeSolid}"
-                    Glyph="{x:Static fontawesome:FontAwesomeIcons.Cog}"
+                    Glyph="{x:Static fontawesome:FontAwesomeIcons.EllipsisH}"
                     Size="20" />
             </Tab.Icon>
             <ShellContent>
