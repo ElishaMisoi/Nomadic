@@ -11,6 +11,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="NewsAPI" Version="0.5.0" />
     <PackageReference Include="Xamarin.Forms" Version="4.6.0.529-pre3" />
     <PackageReference Include="Xamarin.Essentials" Version="1.5.2" />
   </ItemGroup>
