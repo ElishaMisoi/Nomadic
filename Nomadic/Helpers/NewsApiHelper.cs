@@ -75,7 +75,7 @@ namespace Nomadic.Helpers
         }
 
         /// <summary>
-        /// This method tries genral search of articles
+        /// This method tries general search of articles
         /// Pass an array of keywords as parameter 
         /// Please just don't pass a huge array 🙄, 5 items at most
         /// </summary>
@@ -87,7 +87,7 @@ namespace Nomadic.Helpers
             int pageSize;
 
             if (keywords.Length > 5)
-                throw new ArgumentOutOfRangeException();
+                throw new ArgumentOutOfRangeException("Can you just keep a maximum of 5 keywords? Okay? Great :)");
 
             switch (keywords.Length)
             {
