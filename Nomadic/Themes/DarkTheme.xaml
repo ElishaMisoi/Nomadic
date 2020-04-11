@@ -12,10 +12,14 @@
     <Color x:Key="SecondaryColor">White</Color>
     <Color x:Key="TertiaryColor">#434343</Color>
     <Color x:Key="AccentColor">#d50000</Color>
-    <Color x:Key="PageBackgroundColor">Black</Color>
+    <Color x:Key="PageBackgroundColor">#212121</Color>
+    <Color x:Key="ComponentColor">#2d2d2d</Color>
+    <Color x:Key="ImageBackgroundColor">#474747</Color>
+    <Color x:Key="SettingsBackgroundColor">#2b2b2b</Color>
 
     <!--  Shell  -->
     <Color x:Key="ShellDisabledColor">Gray</Color>
+    <Color x:Key="ShellBackgroundColor">#212121</Color>
     <Color x:Key="ShellForegroundColor">White</Color>
     <Color x:Key="ShellTabBarBackgroundColor">Black</Color>
     <Color x:Key="ShellTabBarDisabledColor">Gray</Color>
@@ -28,7 +32,7 @@
     <Color x:Key="SkeletonColor">#434343</Color>
 
     <!--  SearchBar  -->
-    <Color x:Key="SearcBarBackgroundColor">#2c2c2c</Color>
+    <Color x:Key="SearcBarBackgroundColor">#484848</Color>
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Themes/Global.xaml" />
