@@ -12,10 +12,14 @@
     <Color x:Key="SecondaryColor">Black</Color>
     <Color x:Key="TertiaryColor">Gray</Color>
     <Color x:Key="AccentColor">#d50000</Color>
-    <Color x:Key="PageBackgroundColor">#e0e0e0</Color>
+    <Color x:Key="PageBackgroundColor">#efefef</Color>
+    <Color x:Key="ComponentColor">White</Color>
+    <Color x:Key="ImageBackgroundColor">#bcbcbc</Color>
+    <Color x:Key="SettingsBackgroundColor">White</Color>
 
     <!--  Shell  -->
     <Color x:Key="ShellDisabledColor">#8e8e8e</Color>
+    <Color x:Key="ShellBackgroundColor">#efefef</Color>
     <Color x:Key="ShellForegroundColor">Black</Color>
     <Color x:Key="ShellTabBarBackgroundColor">White</Color>
     <Color x:Key="ShellTabBarDisabledColor">#8e8e8e</Color>
@@ -25,7 +29,7 @@
     <Color x:Key="ShellUnselectedColor">#8e8e8e</Color>
 
     <!--  Shimmer  -->
-    <Color x:Key="SkeletonColor">#e0e0e0</Color>
+    <Color x:Key="SkeletonColor">#aeaeae</Color>
 
     <!--  SearchBar  -->
     <Color x:Key="SearcBarBackgroundColor">White</Color>

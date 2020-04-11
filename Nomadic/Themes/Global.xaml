@@ -88,6 +88,15 @@
         <Setter Property="RefreshColor" Value="{DynamicResource PrimaryColor}" />
     </Style>
 
+    <Style TargetType="ActivityIndicator">
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="Color" Value="{DynamicResource AccentColor}" />
+    </Style>
+
+    <Style TargetType="ProgressBar">
+        <Setter Property="ProgressColor" Value="{DynamicResource AccentColor}" />
+    </Style>
+
     <Style TargetType="Entry">
         <Setter Property="FontFamily" Value="{StaticResource LatoRegular}" />
         <Setter Property="TextColor" Value="{DynamicResource SecondaryColor}" />
@@ -123,7 +132,7 @@
         <Setter Property="PlaceholderColor" Value="Gray" />
         <Setter Property="FontFamily" Value="{StaticResource LatoRegular}" />
         <Setter Property="TextColor" Value="{DynamicResource SecondaryColor}" />
-        <Setter Property="CancelButtonColor" Value="{DynamicResource TertiaryColor}" />
+        <Setter Property="CancelButtonColor" Value="Gray" />
         <Setter Property="BackgroundColor" Value="{DynamicResource SearcBarBackgroundColor}" />
         <Style.Triggers>
             <Trigger TargetType="SearchBar" Property="FontAttributes" Value="Bold">

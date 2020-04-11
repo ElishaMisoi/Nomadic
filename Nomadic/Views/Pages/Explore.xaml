@@ -6,11 +6,11 @@
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="Explore"
-    BackgroundColor="{DynamicResource PageBackgroundColor}"
+    BackgroundColor="{DynamicResource ShellBackgroundColor}"
     mc:Ignorable="d">
 
     <Shell.TitleView>
-        <Grid BackgroundColor="{DynamicResource PageBackgroundColor}">
+        <Grid BackgroundColor="{DynamicResource ShellBackgroundColor}">
             <Label
                 FontAttributes="Bold"
                 FontSize="18"
