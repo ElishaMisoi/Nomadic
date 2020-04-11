@@ -20,7 +20,7 @@ namespace Nomadic.Droid.Utils
                     currentWindow.DecorView.SystemUiVisibility = (StatusBarVisibility)SystemUiFlags.LightStatusBar;
                     currentWindow.SetNavigationBarColor(Android.Graphics.Color.ParseColor("#e0e0e0"));
                     currentWindow.SetTitleColor(Android.Graphics.Color.Gray);
-                    currentWindow.SetStatusBarColor(Android.Graphics.Color.ParseColor("#e0e0e0"));
+                    currentWindow.SetStatusBarColor(Android.Graphics.Color.ParseColor("#efefef"));
                 });
             }
         }
@@ -35,7 +35,7 @@ namespace Nomadic.Droid.Utils
                     currentWindow.DecorView.SystemUiVisibility = StatusBarVisibility.Visible;
                     currentWindow.SetNavigationBarColor(Android.Graphics.Color.Black);
                     currentWindow.SetTitleColor(Android.Graphics.Color.White);
-                    currentWindow.SetStatusBarColor(Android.Graphics.Color.Black);
+                    currentWindow.SetStatusBarColor(Android.Graphics.Color.ParseColor("#212121"));
                 });
             }
         }
