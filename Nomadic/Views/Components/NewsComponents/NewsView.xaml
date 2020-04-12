@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ViewCell
+    x:Class="Nomadic.Views.Components.NewsComponents.NewsView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:fontawesome="clr-namespace:FontAwesome"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="viewCell"
+    mc:Ignorable="d">
+
+    <Grid
+        Margin="5,2.5,5,2.5"
+        BackgroundColor="{DynamicResource ComponentColor}"
+        HeightRequest="150"
+        VerticalOptions="Start">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <ffimageloading:CachedImage
+            x:Name="image"
+            Grid.Column="0"
+            Aspect="AspectFill"
+            BackgroundColor="{DynamicResource ImageBackgroundColor}"
+            DownsampleToViewSize="True"
+            DownsampleUseDipUnits="True"
+            HeightRequest="150"
+            WidthRequest="150" />
+
+        <Grid Grid.Column="1" Margin="10,0,10,0">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Label
+                x:Name="description"
+                Grid.Row="0"
+                FontAttributes="Bold"
+                FontSize="18"
+                LineBreakMode="WordWrap"
+                MaxLines="3"
+                VerticalOptions="Center" />
+
+            <Grid Grid.Row="1">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="180" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+
+                    <Label
+                        x:Name="source"
+                        FontSize="13"
+                        LineBreakMode="TailTruncation" />
+
+                    <Label
+                        x:Name="published"
+                        FontSize="13"
+                        LineBreakMode="TailTruncation" />
+
+                </StackLayout>
+
+                <Label
+                    Grid.Column="1"
+                    Margin="0,5,-8,0"
+                    FontFamily="{StaticResource FontAwesomeSolid}"
+                    FontSize="25"
+                    HeightRequest="25"
+                    HorizontalOptions="End"
+                    HorizontalTextAlignment="Center"
+                    Text="{x:Static fontawesome:FontAwesomeIcons.EllipsisH}"
+                    TextColor="Gray"
+                    VerticalOptions="End"
+                    VerticalTextAlignment="End"
+                    WidthRequest="40" />
+
+            </Grid>
+
+        </Grid>
+
+    </Grid>
+
+
+</ViewCell>

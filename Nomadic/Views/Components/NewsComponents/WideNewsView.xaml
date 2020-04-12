@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ViewCell
+    x:Class="Nomadic.Views.Components.NewsComponents.WideNewsView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:fontawesome="clr-namespace:FontAwesome"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    x:Name="viewCell"
+    mc:Ignorable="d">
+
+    <Grid
+        Margin="0,2.5,0,2.5"
+        BackgroundColor="{DynamicResource ComponentColor}"
+        HeightRequest="300"
+        VerticalOptions="Start">
+
+        <ffimageloading:CachedImage
+            x:Name="image"
+            Aspect="AspectFill"
+            BackgroundColor="{DynamicResource ImageBackgroundColor}"
+            DownsampleToViewSize="True"
+            DownsampleUseDipUnits="True" />
+
+        <yummy:PancakeView
+            BackgroundColor="Transparent"
+            BackgroundGradientAngle="180"
+            BackgroundGradientEndColor="#33000000"
+            BackgroundGradientStartColor="Black"
+            BorderThickness="0" />
+
+        <Grid Margin="10" VerticalOptions="End">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Label
+                x:Name="description"
+                Grid.Row="0"
+                FontAttributes="Bold"
+                FontSize="20"
+                LineBreakMode="WordWrap"
+                MaxLines="4"
+                TextColor="White" />
+
+            <Grid Grid.Row="1">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+
+                    <Label
+                        x:Name="source"
+                        FontSize="13"
+                        LineBreakMode="TailTruncation"
+                        TextColor="White" />
+
+                    <Label
+                        x:Name="published"
+                        FontSize="13"
+                        LineBreakMode="TailTruncation"
+                        TextColor="White" />
+
+                </StackLayout>
+
+                <Label
+                    Grid.Column="1"
+                    Margin="5,0,-8,0"
+                    FontFamily="{StaticResource FontAwesomeSolid}"
+                    FontSize="25"
+                    HeightRequest="25"
+                    HorizontalOptions="End"
+                    HorizontalTextAlignment="Center"
+                    Text="{x:Static fontawesome:FontAwesomeIcons.EllipsisH}"
+                    TextColor="LightGray"
+                    VerticalOptions="End"
+                    VerticalTextAlignment="End"
+                    WidthRequest="40" />
+
+            </Grid>
+
+        </Grid>
+
+    </Grid>
+
+</ViewCell>

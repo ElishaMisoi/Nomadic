@@ -6,21 +6,27 @@
     xmlns:cards="clr-namespace:PanCardView;assembly=PanCardView"
     xmlns:controls="clr-namespace:Nomadic.Controls"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:fontawesome="clr-namespace:FontAwesome"
+    xmlns:local="clr-namespace:Nomadic.Views.Components.NewsComponents"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="Main Feed"
     BackgroundColor="{DynamicResource ShellBackgroundColor}"
     mc:Ignorable="d">
 
-    <Shell.TitleView>
-        <Grid BackgroundColor="{DynamicResource ShellBackgroundColor}">
-            <Label
-                FontAttributes="Bold"
-                FontSize="18"
-                HorizontalOptions="Center"
-                Text="MAIN FEED"
-                VerticalOptions="Center" />
-        </Grid>
-    </Shell.TitleView>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="NewsView">
+                <local:NewsView />
+            </DataTemplate>
+            <DataTemplate x:Key="WideNewsView">
+                <local:WideNewsView />
+            </DataTemplate>
+            <local:NewsComponentsDataTemplateSelector
+                x:Key="NewsDataTemplateSelector"
+                NewsView="{StaticResource NewsView}"
+                WideNewsView="{StaticResource WideNewsView}" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
     <ContentPage.Content>
 
@@ -56,7 +62,60 @@
                     <DataTemplate>
                         <ContentView>
 
-                            <Grid BackgroundColor="{DynamicResource PageBackgroundColor}" />
+                            <Grid BackgroundColor="{DynamicResource PageBackgroundColor}">
+
+                                <ListView
+                                    CachingStrategy="RecycleElement"
+                                    HasUnevenRows="True"
+                                    IsPullToRefreshEnabled="True"
+                                    IsRefreshing="{Binding IsRefreshing, Mode=OneWay}"
+                                    ItemTemplate="{StaticResource NewsDataTemplateSelector}"
+                                    ItemsSource="{Binding Articles}"
+                                    RefreshCommand="{Binding Path=BindingContext.RefreshCommand, Source={x:Reference carouselView}}"
+                                    SelectionMode="None"
+                                    SeparatorVisibility="None" />
+
+                                <StackLayout
+                                    HorizontalOptions="Center"
+                                    IsVisible="{Binding HasError}"
+                                    VerticalOptions="Center">
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Path=BindingContext.ReloadCommand, Source={x:Reference carouselView}}" />
+                                    </StackLayout.GestureRecognizers>
+
+                                    <Label
+                                        FontFamily="{StaticResource FontAwesomeSolid}"
+                                        FontSize="55"
+                                        HorizontalOptions="Center"
+                                        Text="{x:Static fontawesome:FontAwesomeIcons.Wifi}"
+                                        TextColor="Gray" />
+
+                                    <StackLayout>
+
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="25"
+                                            HorizontalTextAlignment="Center"
+                                            Text="No Network connection"
+                                            TextColor="Gray" />
+
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="25"
+                                            HorizontalTextAlignment="Center"
+                                            Text="Tap to retry"
+                                            TextColor="Gray" />
+
+                                    </StackLayout>
+
+                                </StackLayout>
+
+                                <ActivityIndicator
+                                    HorizontalOptions="Center"
+                                    IsRunning="{Binding IsBusy}"
+                                    VerticalOptions="Center" />
+
+                            </Grid>
 
                         </ContentView>
                     </DataTemplate>
