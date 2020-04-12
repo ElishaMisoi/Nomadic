@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,6 +34,13 @@ namespace Nomadic.Views.Pages
                 }
               );
             });
+        }
+
+        private async void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            var tapped = e.Item as Models.Article;
+
+            await Navigation.PushAsync(new WebPage(tapped));
         }
     }
 }
