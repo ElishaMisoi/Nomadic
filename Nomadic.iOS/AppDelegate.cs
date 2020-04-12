@@ -29,6 +29,9 @@ namespace Nomadic.iOS
             // Initialize CardsView
             CardsViewRenderer.Preserve();
 
+            // Initialize FFImageLoading
+            FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
+
             return base.FinishedLaunching(app, options);
         }
     }
