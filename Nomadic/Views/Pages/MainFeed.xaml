@@ -69,6 +69,7 @@
                                     HasUnevenRows="True"
                                     IsPullToRefreshEnabled="True"
                                     IsRefreshing="{Binding IsRefreshing, Mode=OneWay}"
+                                    ItemTapped="ListView_ItemTapped"
                                     ItemTemplate="{StaticResource NewsDataTemplateSelector}"
                                     ItemsSource="{Binding Articles}"
                                     RefreshCommand="{Binding Path=BindingContext.RefreshCommand, Source={x:Reference carouselView}}"

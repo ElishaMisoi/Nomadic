@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Nomadic.Views.Pages.WebPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:fontawesome="clr-namespace:FontAwesome"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    BackgroundColor="{DynamicResource PrimaryColor}"
+    mc:Ignorable="d">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Order="Primary" Priority="0">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource
+                    FontFamily="{StaticResource FontAwesomeSolid}"
+                    Glyph="{x:Static fontawesome:FontAwesomeIcons.Save}"
+                    Size="20" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+        <ToolbarItem Order="Primary" Priority="0">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource
+                    FontFamily="{StaticResource FontAwesomeSolid}"
+                    Glyph="{x:Static fontawesome:FontAwesomeIcons.ShareAlt}"
+                    Size="20" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+
+        <Grid BackgroundColor="{DynamicResource ShellBackgroundColor}" RowSpacing="0">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <ProgressBar
+                x:Name="progressBar"
+                Grid.Row="0"
+                BackgroundColor="Transparent" />
+
+            <WebView
+                x:Name="webView"
+                Grid.Row="1"
+                BackgroundColor="Transparent"
+                HorizontalOptions="FillAndExpand"
+                Navigated="WebView_Navigated"
+                Navigating="WebView_Navigating"
+                VerticalOptions="FillAndExpand"
+                Visual="Material" />
+
+        </Grid>
+
+    </ContentPage.Content>
+</ContentPage>

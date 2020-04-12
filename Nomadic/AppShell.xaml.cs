@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Nomadic.Views.Pages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,12 @@ namespace Nomadic
         public AppShell()
         {
             InitializeComponent();
+            RegisterRoutes();
+        }
+
+        public static void RegisterRoutes()
+        {
+            Routing.RegisterRoute("webpage", typeof(WebPage));
         }
     }
 }
