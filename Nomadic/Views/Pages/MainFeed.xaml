@@ -3,6 +3,8 @@
     x:Class="Nomadic.Views.Pages.MainFeed"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:cards="clr-namespace:PanCardView;assembly=PanCardView"
+    xmlns:controls="clr-namespace:Nomadic.Controls"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="Main Feed"
@@ -21,12 +23,48 @@
     </Shell.TitleView>
 
     <ContentPage.Content>
-        <StackLayout>
-            <Label
-                HorizontalOptions="CenterAndExpand"
-                Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" />
-        </StackLayout>
+
+        <Grid RowSpacing="0">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="45" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <ScrollView
+                x:Name="scrollView"
+                Grid.Row="0"
+                HorizontalScrollBarVisibility="Never"
+                Orientation="Horizontal">
+
+                <controls:CarouselIndicatorView
+                    x:Name="carouselIndicator"
+                    CurrentItem="{Binding CurrentTab}"
+                    Items="{Binding TabItems}" />
+
+            </ScrollView>
+
+            <cards:CarouselView
+                x:Name="carouselView"
+                Grid.Row="1"
+                BackgroundColor="{DynamicResource PageBackgroundColor}"
+                IsVerticalSwipeEnabled="False"
+                ItemsSource="{Binding TabItems}"
+                SelectedItem="{Binding CurrentTab}"
+                SwipeThresholdDistance="50">
+                <cards:CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <ContentView>
+
+                            <Grid BackgroundColor="{DynamicResource PageBackgroundColor}" />
+
+                        </ContentView>
+                    </DataTemplate>
+                </cards:CarouselView.ItemTemplate>
+            </cards:CarouselView>
+
+        </Grid>
+
     </ContentPage.Content>
 
 </ContentPage>

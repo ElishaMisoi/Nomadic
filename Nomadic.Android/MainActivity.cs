@@ -6,6 +6,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using PanCardView.Droid;
 
 namespace Nomadic.Droid
 {
@@ -24,6 +25,9 @@ namespace Nomadic.Droid
 
             // Initialize CrossCurrentActivity
             Plugin.CurrentActivity.CrossCurrentActivity.Current.Init(this, savedInstanceState);
+
+            // Initialize CardsView
+            CardsViewRenderer.Preserve();
 
             LoadApplication(new App());
         }

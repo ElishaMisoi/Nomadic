@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Foundation;
+using PanCardView.iOS;
 using UIKit;
 
 namespace Nomadic.iOS
@@ -24,6 +25,9 @@ namespace Nomadic.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
+
+            // Initialize CardsView
+            CardsViewRenderer.Preserve();
 
             return base.FinishedLaunching(app, options);
         }
