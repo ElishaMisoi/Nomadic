@@ -4,10 +4,32 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:fontawesome="clr-namespace:FontAwesome"
+    xmlns:local="clr-namespace:Nomadic.Views.Components.NewsComponents"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="clr-namespace:Nomadic.ViewModels"
     Title="Local"
-    BackgroundColor="{DynamicResource ShellBackgroundColor}"
+    BackgroundColor="{DynamicResource PageBackgroundColor}"
     mc:Ignorable="d">
+
+    <ContentPage.BindingContext>
+        <viewModels:LocalViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="NewsView">
+                <local:NewsView />
+            </DataTemplate>
+            <DataTemplate x:Key="WideNewsView">
+                <local:WideNewsView />
+            </DataTemplate>
+            <local:NewsComponentsDataTemplateSelector
+                x:Key="NewsDataTemplateSelector"
+                NewsView="{StaticResource NewsView}"
+                WideNewsView="{StaticResource WideNewsView}" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
     <Shell.TitleView>
         <Grid BackgroundColor="{DynamicResource ShellBackgroundColor}">
@@ -21,12 +43,96 @@
     </Shell.TitleView>
 
     <ContentPage.Content>
-        <StackLayout>
-            <Label
-                HorizontalOptions="CenterAndExpand"
-                Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" />
-        </StackLayout>
+
+        <Grid>
+
+            <ListView
+                CachingStrategy="RecycleElement"
+                HasUnevenRows="True"
+                IsPullToRefreshEnabled="True"
+                IsRefreshing="{Binding CurrentItem.IsRefreshing, Mode=OneWay}"
+                ItemTapped="ListView_ItemTapped"
+                ItemTemplate="{StaticResource NewsDataTemplateSelector}"
+                ItemsSource="{Binding CurrentItem.Articles}"
+                RefreshCommand="{Binding RefreshCommand}"
+                SelectionMode="None"
+                SeparatorVisibility="None" />
+
+            <StackLayout
+                HorizontalOptions="Center"
+                IsVisible="{Binding CurrentItem.HasError}"
+                VerticalOptions="Center">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding RefreshCommand}" />
+                </StackLayout.GestureRecognizers>
+
+                <Label
+                    FontFamily="{StaticResource FontAwesomeSolid}"
+                    FontSize="55"
+                    HorizontalOptions="Center"
+                    Text="{x:Static fontawesome:FontAwesomeIcons.Wifi}"
+                    TextColor="Gray" />
+
+                <StackLayout>
+
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="25"
+                        HorizontalTextAlignment="Center"
+                        Text="No Network connection"
+                        TextColor="Gray" />
+
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="25"
+                        HorizontalTextAlignment="Center"
+                        Text="Tap to retry"
+                        TextColor="Gray" />
+
+                </StackLayout>
+            </StackLayout>
+
+            <StackLayout
+                HorizontalOptions="Center"
+                IsVisible="{Binding NoLocation}"
+                VerticalOptions="Center">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding RefreshCommand}" />
+                </StackLayout.GestureRecognizers>
+
+                <Label
+                    FontFamily="{StaticResource FontAwesomeSolid}"
+                    FontSize="55"
+                    HorizontalOptions="Center"
+                    Text="{x:Static fontawesome:FontAwesomeIcons.MapMarkedAlt}"
+                    TextColor="Gray" />
+
+                <StackLayout>
+
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="25"
+                        HorizontalTextAlignment="Center"
+                        Text="Your location couldn't be detected."
+                        TextColor="Gray" />
+
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="25"
+                        HorizontalTextAlignment="Center"
+                        Text="Tap to retry"
+                        TextColor="Gray" />
+
+                </StackLayout>
+            </StackLayout>
+
+            <ActivityIndicator
+                HorizontalOptions="Center"
+                IsRunning="{Binding IsBusy}"
+                VerticalOptions="Center" />
+
+        </Grid>
+
     </ContentPage.Content>
 
 </ContentPage>
