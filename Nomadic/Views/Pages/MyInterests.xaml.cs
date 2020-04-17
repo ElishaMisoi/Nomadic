@@ -15,6 +15,22 @@ namespace Nomadic.Views.Pages
         public MyInterests()
         {
             InitializeComponent();
+            BindingContext = ViewModels.InterestsViewModel.Instance;
+        }
+
+        private async void collectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (collectionView.SelectedItem != null)
+            {
+                var selected = e.CurrentSelection.FirstOrDefault() as Models.Interest;
+
+                ViewModels.InterestsViewModel.Instance.CurrentInterest = selected;
+                ViewModels.InterestsViewModel.Instance.CurrentItem = new Models.Tab { Title = selected.Title };
+
+                await Shell.Current.GoToAsync($"interestarticles");
+
+                collectionView.SelectedItem = null;
+            }
         }
     }
 }
