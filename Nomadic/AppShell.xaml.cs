@@ -22,6 +22,7 @@ namespace Nomadic
         public static void RegisterRoutes()
         {
             Routing.RegisterRoute("webpage", typeof(WebPage));
+            Routing.RegisterRoute("interestarticles", typeof(InterestArticles));
         }
     }
 }

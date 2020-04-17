@@ -1,6 +1,4 @@
 ﻿using Nomadic.Interfaces;
-using Xamarin.Essentials;
-using Xamarin.Forms;
 
 namespace Nomadic.Themes
 {
@@ -8,22 +6,22 @@ namespace Nomadic.Themes
     {
         public static void GetSystemRequestedTheme()
         {
-            AppTheme appTheme = AppInfo.RequestedTheme;
+            Xamarin.Essentials.AppTheme appTheme = Xamarin.Essentials.AppInfo.RequestedTheme;
 
-            if (appTheme == AppTheme.Dark)
+            if (appTheme == Xamarin.Essentials.AppTheme.Dark)
             {
-                Application.Current.Resources = new DarkTheme();
-                DependencyService.Get<IStatusBar>().ChangeStatusBarColorToBlack();
+                Xamarin.Forms.Application.Current.Resources = new DarkTheme();
+                Xamarin.Forms.DependencyService.Get<IStatusBar>().ChangeStatusBarColorToBlack();
             }
-            else if (appTheme == AppTheme.Light)
+            else if (appTheme == Xamarin.Essentials.AppTheme.Light)
             {
-                Application.Current.Resources = new LightTheme();
-                DependencyService.Get<IStatusBar>().ChangeStatusBarColorToWhite();
+                Xamarin.Forms.Application.Current.Resources = new LightTheme();
+                Xamarin.Forms.DependencyService.Get<IStatusBar>().ChangeStatusBarColorToWhite();
             }
             else
             {
-                Application.Current.Resources = new LightTheme();
-                DependencyService.Get<IStatusBar>().ChangeStatusBarColorToWhite();
+                Xamarin.Forms.Application.Current.Resources = new LightTheme();
+                Xamarin.Forms.DependencyService.Get<IStatusBar>().ChangeStatusBarColorToWhite();
             }
         }
     }
