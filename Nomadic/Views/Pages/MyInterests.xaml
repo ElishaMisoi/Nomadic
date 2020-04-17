@@ -5,7 +5,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:viewCell="clr-namespace:Nomadic.Views.Components.InterestsComponents"
     Title="My Interests"
     BackgroundColor="{DynamicResource ShellBackgroundColor}"
     mc:Ignorable="d">
@@ -22,31 +21,12 @@
     </Shell.TitleView>
 
     <ContentPage.Content>
-
-        <Grid>
-
-            <ActivityIndicator
-                HorizontalOptions="Center"
-                IsRunning="{Binding IsBusy}"
-                VerticalOptions="Center" />
-
-            <CollectionView
-                x:Name="collectionView"
-                ItemsSource="{Binding Interests}"
-                SelectionChanged="collectionView_SelectionChanged"
-                SelectionMode="Single">
-                <CollectionView.ItemsLayout>
-                    <GridItemsLayout Orientation="Vertical" Span="3" />
-                </CollectionView.ItemsLayout>
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <viewCell:Interest />
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-
-        </Grid>
-
+        <StackLayout>
+            <Label
+                HorizontalOptions="CenterAndExpand"
+                Text="Welcome to Xamarin.Forms!"
+                VerticalOptions="CenterAndExpand" />
+        </StackLayout>
     </ContentPage.Content>
 
 </ContentPage>
