@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewCell="clr-namespace:Nomadic.Views.Components.InterestsComponents"
     Title="Explore"
     BackgroundColor="{DynamicResource ShellBackgroundColor}"
     mc:Ignorable="d">
@@ -21,12 +22,44 @@
     </Shell.TitleView>
 
     <ContentPage.Content>
-        <StackLayout>
-            <Label
-                HorizontalOptions="CenterAndExpand"
-                Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" />
-        </StackLayout>
+
+        <Grid RowSpacing="0">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <SearchBar
+                Grid.Row="0"
+                Margin="15,0,15,0"
+                Placeholder="Search"
+                Text="{Binding SearchText}" />
+
+            <ActivityIndicator
+                Grid.Row="1"
+                HorizontalOptions="Center"
+                IsRunning="{Binding IsBusy}"
+                VerticalOptions="Center" />
+
+            <CollectionView
+                x:Name="collectionView"
+                Grid.Row="1"
+                ItemsSource="{Binding InterestsSearchList}"
+                SelectionChanged="CollectionView_SelectionChanged"
+                SelectionMode="Single">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" Span="3" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <viewCell:Interest />
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </Grid>
+
     </ContentPage.Content>
 
 </ContentPage>
