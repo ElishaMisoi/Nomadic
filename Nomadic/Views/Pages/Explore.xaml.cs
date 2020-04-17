@@ -26,7 +26,7 @@ namespace Nomadic.Views.Pages
 
                 ViewModels.InterestsViewModel.Instance.CurrentItem = new Models.Tab { Title = selected.Title };
 
-                await Shell.Current.GoToAsync($"interestpage");
+                await Shell.Current.GoToAsync($"interestarticles");
 
                 collectionView.SelectedItem = null;
             }
