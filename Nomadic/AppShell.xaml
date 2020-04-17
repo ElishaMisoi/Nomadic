@@ -20,61 +20,67 @@
     mc:Ignorable="d">
 
     <TabBar>
-        <Tab Title="Feed">
-            <Tab.Icon>
+        
+        <ShellContent
+            Title="Feed"
+            ContentTemplate="{DataTemplate views:MainFeed}"
+            Route="mainFeed">
+            <ShellContent.Icon>
                 <FontImageSource
                     FontFamily="{StaticResource FontAwesomeSolid}"
                     Glyph="{x:Static fontawesome:FontAwesomeIcons.Newspaper}"
                     Size="20" />
-            </Tab.Icon>
-            <ShellContent>
-                <views:MainFeed />
-            </ShellContent>
-        </Tab>
-        <Tab Title="Interests">
-            <Tab.Icon>
+            </ShellContent.Icon>
+        </ShellContent>
+
+        <ShellContent
+            Title="Interests"
+            ContentTemplate="{DataTemplate views:MyInterests}"
+            Route="interests">
+            <ShellContent.Icon>
                 <FontImageSource
                     FontFamily="{StaticResource FontAwesomeSolid}"
                     Glyph="{x:Static fontawesome:FontAwesomeIcons.Star}"
                     Size="20" />
-            </Tab.Icon>
-            <ShellContent>
-                <views:MyInterests />
-            </ShellContent>
-        </Tab>
-        <Tab Title="Explore">
-            <Tab.Icon>
+            </ShellContent.Icon>
+        </ShellContent>
+
+        <ShellContent
+            Title="Explore"
+            ContentTemplate="{DataTemplate views:Explore}"
+            Route="explore">
+            <ShellContent.Icon>
                 <FontImageSource
                     FontFamily="{StaticResource FontAwesomeSolid}"
                     Glyph="{x:Static fontawesome:FontAwesomeIcons.Search}"
                     Size="20" />
-            </Tab.Icon>
-            <ShellContent>
-                <views:Explore />
-            </ShellContent>
-        </Tab>
-        <Tab Title="Local">
-            <Tab.Icon>
+            </ShellContent.Icon>
+        </ShellContent>
+
+        <ShellContent
+            Title="Local"
+            ContentTemplate="{DataTemplate views:Local}"
+            Route="interests">
+            <ShellContent.Icon>
                 <FontImageSource
                     FontFamily="{StaticResource FontAwesomeSolid}"
                     Glyph="{x:Static fontawesome:FontAwesomeIcons.MapPin}"
                     Size="20" />
-            </Tab.Icon>
-            <ShellContent>
-                <views:Local />
-            </ShellContent>
-        </Tab>
-        <Tab Title="Settings">
-            <Tab.Icon>
+            </ShellContent.Icon>
+        </ShellContent>
+
+        <ShellContent
+            Title="Settings"
+            ContentTemplate="{DataTemplate views:Settings}"
+            Route="settings">
+            <ShellContent.Icon>
                 <FontImageSource
                     FontFamily="{StaticResource FontAwesomeSolid}"
                     Glyph="{x:Static fontawesome:FontAwesomeIcons.Cog}"
                     Size="20" />
-            </Tab.Icon>
-            <ShellContent>
-                <views:Settings />
-            </ShellContent>
-        </Tab>
+            </ShellContent.Icon>
+        </ShellContent>
+        
     </TabBar>
 
 </Shell>
