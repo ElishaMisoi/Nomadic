@@ -42,9 +42,11 @@
 		<string>fa-solid.otf</string>
 		<string>fa-brands.otf</string>
 	</array>
-	<key>UIStatusBarStyle</key>
-	<string>UIStatusBarStyleLightContent</string>
-	<key>UIViewControllerBasedStatusBarAppearance</key>
-	<false/>
+  <key>UIStatusBarStyle</key>
+  <string>UIStatusBarStyleLightContent</string>
+  <key>UIViewControllerBasedStatusBarAppearance</key>
+  <false/>
+  <key>NSLocationWhenInUseUsageDescription</key>
+  <string>Nomadic needs to access your location to give you your local news.</string>
 </dict>
 </plist>
