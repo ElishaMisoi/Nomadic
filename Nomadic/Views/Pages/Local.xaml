@@ -37,7 +37,7 @@
                 FontAttributes="Bold"
                 FontSize="18"
                 HorizontalOptions="Center"
-                Text="LOCAL"
+                Text="LOCAL NEWS"
                 VerticalOptions="Center" />
         </Grid>
     </Shell.TitleView>
