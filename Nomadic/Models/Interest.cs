@@ -1,6 +1,4 @@
 ﻿using Newtonsoft.Json;
-using Plugin.CloudFirestore.Attributes;
-using PSC.Xamarin.MvvmHelpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,9 +10,12 @@ namespace Nomadic.Models
 {
     public class Interest : INotifyPropertyChanged
     {
+        /// <summary>
+        /// Title of the Interest to be used to fetch data 
+        /// from NewsAPI
+        /// </summary>
         string _title;
         [JsonProperty("title")]
-        [MapTo("title")]
         public string Title
         {
             get { return _title.ToUpper(); }
@@ -25,13 +26,14 @@ namespace Nomadic.Models
             }
         }
 
+        /// <summary>
+        /// Image Url of the Interest
+        /// </summary>
         [JsonProperty("url_to_image")]
-        [MapTo("url_to_image")]
         public string UrlToImage { get; set; }
 
         string _btnIcon;
         [JsonIgnore]
-        [Ignored]
         public string BtnIcon
         {
             get { return _btnIcon; }
@@ -42,9 +44,12 @@ namespace Nomadic.Models
             }
         }
 
+        /// <summary>
+        /// To be used to check if user has already selected
+        /// The specific Interest
+        /// </summary>
         bool _isInterestAdded;
         [JsonIgnore]
-        [Ignored]
         public bool IsInterestAdded
         {
             get { return _isInterestAdded; }
@@ -65,11 +70,17 @@ namespace Nomadic.Models
             }
         }
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public Interest()
         {
             IsInterestAdded = false;
         }
 
+        /// <summary>
+        /// MVVM stuff
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void OnPropertyChanged([CallerMemberName] string name = "")

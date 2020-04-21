@@ -25,7 +25,7 @@
 	<key>CFBundleDisplayName</key>
 	<string>Nomadic</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.Nomadic</string>
+	<string>com..Nomadic</string>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
 	<key>UILaunchStoryboardName</key>
@@ -42,24 +42,11 @@
 		<string>fa-solid.otf</string>
 		<string>fa-brands.otf</string>
 	</array>
-	<key>UIStatusBarStyle</key>
-	<string>UIStatusBarStyleLightContent</string>
-	<key>UIViewControllerBasedStatusBarAppearance</key>
-	<false/>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Nomadic needs to access your location to give you your local news.</string>
-	<key>CFBundleURLTypes</key>
-	<array>
-		<dict>
-			<key>CFBundleURLTypes</key>
-			<string>Viewer</string>
-			<key>CFBundleURLName</key>
-			<string>Xamarin.Auth Google PAuth</string>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>place your iOS Google client Id here</string>
-			</array>
-		</dict>
-	</array>
+  <key>UIStatusBarStyle</key>
+  <string>UIStatusBarStyleLightContent</string>
+  <key>UIViewControllerBasedStatusBarAppearance</key>
+  <false/>
+  <key>NSLocationWhenInUseUsageDescription</key>
+  <string>Nomadic needs to access your location to give you your local news.</string>
 </dict>
 </plist>

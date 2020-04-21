@@ -15,12 +15,6 @@ namespace Nomadic.Views.Pages
         public Settings()
         {
             InitializeComponent();
-            BindingContext = ViewModels.SettingsViewModel.Instance;
-        }
-
-        private async void SignOut_Tapped(object sender, EventArgs e)
-        {
-            await Shell.Current.GoToAsync($"signout");
         }
     }
 }
