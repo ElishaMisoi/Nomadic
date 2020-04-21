@@ -23,6 +23,7 @@ namespace Nomadic
         {
             Routing.RegisterRoute("webpage", typeof(WebPage));
             Routing.RegisterRoute("interestarticles", typeof(InterestArticles));
+            Routing.RegisterRoute("signout", typeof(SignOut));
         }
     }
 }

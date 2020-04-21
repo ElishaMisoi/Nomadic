@@ -10,17 +10,12 @@ using Xamarin.Forms.Xaml;
 namespace Nomadic.Views.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Settings : ContentPage
+    public partial class SignOut : ContentPage
     {
-        public Settings()
+        public SignOut()
         {
             InitializeComponent();
             BindingContext = ViewModels.SettingsViewModel.Instance;
-        }
-
-        private async void SignOut_Tapped(object sender, EventArgs e)
-        {
-            await Shell.Current.GoToAsync($"signout");
         }
     }
 }

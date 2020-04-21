@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using DateHelper;
 using Newtonsoft.Json;
+using Plugin.CloudFirestore.Attributes;
 using Xamarin.Forms;
 
 namespace Nomadic.Models
@@ -11,12 +12,9 @@ namespace Nomadic.Models
     [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
     public class Article : INotifyPropertyChanged
     {
-        /// <summary>
-        /// ID of the article, to be used when saving the 
-        /// story to a database
-        /// </summary>
         string _id;
         [JsonProperty("id")]
+        [MapTo("id")]
         public string ID
         {
             get { return _id; }
@@ -27,11 +25,9 @@ namespace Nomadic.Models
             }
         }
 
-        /// <summary>
-        /// Title of the article
-        /// </summary>
         string _title;
         [JsonProperty("title")]
+        [MapTo("title")]
         public string Title
         {
             get { return _title; }
@@ -42,13 +38,9 @@ namespace Nomadic.Models
             }
         }
 
-        /// <summary>
-        /// Used when awaiting fetching of article from
-        /// NewsAPI. To be used to show ActivityIndicator 
-        /// in the UI
-        /// </summary>
         bool _isBusy;
         [JsonIgnore]
+        [Ignored]
         public bool IsBusy
         {
             get { return _isBusy; }
@@ -59,11 +51,9 @@ namespace Nomadic.Models
             }
         }
 
-        /// <summary>
-        /// Author of the article
-        /// </summary>
         string _author;
         [JsonProperty("author")]
+        [MapTo("author")]
         public string Author
         {
             get { return _author; }
@@ -74,12 +64,9 @@ namespace Nomadic.Models
             }
         }
 
-
-        /// <summary>
-        /// Source of the article
-        /// </summary>
         string _source;
         [JsonProperty("source")]
+        [MapTo("source")]
         public string Source
         {
             get { return _source; }
@@ -90,11 +77,9 @@ namespace Nomadic.Models
             }
         }
 
-        /// <summary>
-        /// Short description of the article
-        /// </summary>
         string _description;
         [JsonProperty("description")]
+        [MapTo("description")]
         public string Description
         {
             get { return _description; }
@@ -105,11 +90,9 @@ namespace Nomadic.Models
             }
         }
 
-        /// <summary>
-        /// Url to the article
-        /// </summary>
         string _url;
         [JsonProperty("url")]
+        [MapTo("url")]
         public string Url
         {
             get { return _url; }
@@ -120,11 +103,9 @@ namespace Nomadic.Models
             }
         }
 
-        /// <summary>
-        /// Image Url of the article
-        /// </summary>
         string _urlToImage;
         [JsonProperty("url_to_image")]
+        [MapTo("url_to_image")]
         public string UrlToImage
         {
             get { return _urlToImage; }
@@ -135,11 +116,9 @@ namespace Nomadic.Models
             }
         }
 
-        /// <summary>
-        /// The formated date string to be displayed in the UI
-        /// </summary>
         string _published;
         [JsonIgnore]
+        [Ignored]
         public string Published
         {
             get { return _published; }
@@ -150,11 +129,9 @@ namespace Nomadic.Models
             }
         }
 
-        /// <summary>
-        /// Date when the article was published
-        /// </summary>
         DateTime? _publishedAt;
         [JsonProperty("published_at")]
+        [MapTo("published_at")]
         public DateTime? PublishedAt
         {
             get { return _publishedAt; }
@@ -169,12 +146,22 @@ namespace Nomadic.Models
             }
         }
 
-        /// <summary>
-        /// To be used with DataTemplateSelector as a guide on which
-        /// Template to use
-        /// </summary>
+        long _savedOn;
+        [JsonProperty("saved_on")]
+        [MapTo("saved_on")]
+        public long SavedOn
+        {
+            get { return _savedOn; }
+            set
+            {
+                _savedOn = value;
+                OnPropertyChanged();
+            }
+        }
+
         bool _isWideView;
         [JsonIgnore]
+        [Ignored]
         public bool IsWideView
         {
             get { return _isWideView; }
@@ -185,10 +172,6 @@ namespace Nomadic.Models
             }
         }
 
-        /// <summary>
-        /// Property changed stuff for MVVM to notify UI that 
-        /// something changed in the class and it should update
-        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void OnPropertyChanged([CallerMemberName] string name = "")
