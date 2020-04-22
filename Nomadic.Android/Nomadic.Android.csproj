@@ -43,6 +43,17 @@
     <WarningLevel>4</WarningLevel>
     <AndroidManagedSymbols>true</AndroidManagedSymbols>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+    <AndroidKeyStore>true</AndroidKeyStore>
+    <AndroidSigningKeyStore>C:\Users\ElishaMisoi\AppData\Local\Xamarin\Mono for Android\Keystore\Nomadic\Nomadic.keystore</AndroidSigningKeyStore>
+    <AndroidSigningStorePass>Itjustfits1211!</AndroidSigningStorePass>
+    <AndroidSigningKeyAlias>Nomadic</AndroidSigningKeyAlias>
+    <AndroidSigningKeyPass>Itjustfits1211!</AndroidSigningKeyPass>
+    <AndroidEnableMultiDex>true</AndroidEnableMultiDex>
+    <AotAssemblies>true</AotAssemblies>
+    <EnableLLVM>false</EnableLLVM>
+    <AndroidEnableProfiledAot>true</AndroidEnableProfiledAot>
+    <AndroidDexTool>dx</AndroidDexTool>
+    <BundleAssemblies>true</BundleAssemblies>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
