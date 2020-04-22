@@ -10,7 +10,10 @@
     mc:Ignorable="d">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Order="Primary" Priority="0">
+        <ToolbarItem
+            Clicked="SaveArticle"
+            Order="Primary"
+            Priority="0">
             <ToolbarItem.IconImageSource>
                 <FontImageSource
                     FontFamily="{StaticResource FontAwesomeSolid}"
@@ -18,7 +21,10 @@
                     Size="20" />
             </ToolbarItem.IconImageSource>
         </ToolbarItem>
-        <ToolbarItem Order="Primary" Priority="0">
+        <ToolbarItem
+            Clicked="ShareArticle"
+            Order="Primary"
+            Priority="0">
             <ToolbarItem.IconImageSource>
                 <FontImageSource
                     FontFamily="{StaticResource FontAwesomeSolid}"
@@ -55,4 +61,5 @@
         </Grid>
 
     </ContentPage.Content>
+
 </ContentPage>
