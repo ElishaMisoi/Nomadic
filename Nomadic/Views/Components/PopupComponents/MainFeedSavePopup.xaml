@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<popup:PopupPage
+    x:Class="Nomadic.Views.Components.PopupComponents.MainFeedSavePopup"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:fontawesome="clr-namespace:FontAwesome"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    mc:Ignorable="d">
+
+    <popup:PopupPage.Animation>
+        <animations:MoveAnimation
+            DurationIn="100"
+            DurationOut="100"
+            EasingIn="Linear"
+            EasingOut="Linear"
+            HasBackgroundAnimation="True"
+            PositionIn="Bottom"
+            PositionOut="Bottom" />
+    </popup:PopupPage.Animation>
+
+    <Frame
+        Margin="0,0,0,-10"
+        BackgroundColor="{DynamicResource ComponentColor}"
+        CornerRadius="10"
+        HasShadow="True"
+        VerticalOptions="End">
+
+        <StackLayout Spacing="5">
+
+            <StackLayout
+                Padding="0,10,10,10"
+                Orientation="Horizontal"
+                Spacing="15">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SaveArticleCommand}" />
+                </StackLayout.GestureRecognizers>
+
+                <Label
+                    FontFamily="{StaticResource FontAwesomeSolid}"
+                    FontSize="25"
+                    HeightRequest="25"
+                    Text="{x:Static fontawesome:FontAwesomeIcons.Save}" />
+
+                <Label
+                    FontSize="20"
+                    Text="Save"
+                    VerticalOptions="Center" />
+
+            </StackLayout>
+
+
+            <StackLayout
+                Padding="0,10,10,10"
+                Orientation="Horizontal"
+                Spacing="15">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ShareArticleCommand}" />
+                </StackLayout.GestureRecognizers>
+
+                <Label
+                    FontFamily="{StaticResource FontAwesomeSolid}"
+                    FontSize="25"
+                    HeightRequest="25"
+                    Text="{x:Static fontawesome:FontAwesomeIcons.ShareAlt}" />
+
+                <Label
+                    FontSize="20"
+                    Text="Share"
+                    VerticalOptions="Center" />
+
+            </StackLayout>
+
+
+            <StackLayout
+                Padding="0,10,10,10"
+                Orientation="Horizontal"
+                Spacing="15">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ClosePopupCommand}" />
+                </StackLayout.GestureRecognizers>
+
+                <Label
+                    FontFamily="{StaticResource FontAwesomeSolid}"
+                    FontSize="25"
+                    HeightRequest="25"
+                    Text="{x:Static fontawesome:FontAwesomeIcons.Times}" />
+
+                <Label
+                    FontSize="20"
+                    Text="Cancel"
+                    VerticalOptions="Center" />
+
+            </StackLayout>
+
+        </StackLayout>
+
+    </Frame>
+
+</popup:PopupPage>

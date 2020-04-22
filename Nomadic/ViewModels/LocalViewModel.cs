@@ -13,6 +13,8 @@ namespace Nomadic.ViewModels
 {
     public class LocalViewModel : BaseViewModel
     {
+        #region Properties
+
         /// <summary>
         /// The Curent Tab Item
         /// </summary>
@@ -41,11 +43,22 @@ namespace Nomadic.ViewModels
             }
         }
 
+        #endregion
+
+        #region Constructor
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public LocalViewModel()
         {
             CurrentItem = new Tab();
             _ = LoadLocationNews();
         }
+
+        #endregion
+
+        #region Methods
 
         /// <summary>
         /// Function to get news depending on location
@@ -193,7 +206,7 @@ namespace Nomadic.ViewModels
         }
 
         /// <summary>
-        /// Function to reload page data
+        /// Function to reload page data in Local Page
         /// </summary>
         async Task Reload()
         {
@@ -208,6 +221,9 @@ namespace Nomadic.ViewModels
             }
         }
 
+        /// <summary>
+        /// Command to reload page data in Local Page
+        /// </summary>
         ICommand _refreshCommand = null;
 
         public ICommand RefreshCommand
@@ -218,5 +234,7 @@ namespace Nomadic.ViewModels
                                           new Xamarin.Forms.Command(async (object obj) => await Reload()));
             }
         }
+
+        #endregion
     }
 }

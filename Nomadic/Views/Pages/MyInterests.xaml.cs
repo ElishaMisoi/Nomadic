@@ -18,7 +18,7 @@ namespace Nomadic.Views.Pages
             BindingContext = ViewModels.InterestsViewModel.Instance;
         }
 
-        private async void collectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private async void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (collectionView.SelectedItem != null)
             {

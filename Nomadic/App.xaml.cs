@@ -1,4 +1,5 @@
 ﻿using Nomadic.Themes;
+using Plugin.CloudFirestore;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -9,6 +10,12 @@ namespace Nomadic
     {
         public App()
         {
+            CrossCloudFirestore.Current.Instance.FirestoreSettings = new FirestoreSettings
+            {
+                AreTimestampsInSnapshotsEnabled = false,
+                IsPersistenceEnabled = true
+            };
+
             InitializeComponent();
 
             MainPage = new AppShell();
@@ -16,7 +23,7 @@ namespace Nomadic
 
         protected override void OnStart()
         {
-            ThemeHelper.GetSystemRequestedTheme();
+            ThemeHelper.GetAppTheme();
         }
 
         protected override void OnSleep()

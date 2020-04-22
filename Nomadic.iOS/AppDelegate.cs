@@ -23,20 +23,21 @@ namespace Nomadic.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+            // Initialize RG.Plugins.Popup
+            Rg.Plugins.Popup.Popup.Init();
+
             global::Xamarin.Forms.Forms.Init();
-            LoadApplication(new App());
 
-            // Initialize CardsView
-            CardsViewRenderer.Preserve();
+            // Initializa Xamarin.Auth Presenters
+            global::Xamarin.Auth.Presenters.XamarinIOS.AuthenticationConfiguration.Init();
 
-            // Initialize FFImageLoading
+            // Initialize FFImage
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
 
             // Initialize Firebase
             Firebase.Core.App.Configure();
 
-            // Initializa Xamarin.Auth Presenters
-            global::Xamarin.Auth.Presenters.XamarinIOS.AuthenticationConfiguration.Init();
+            LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);
         }

@@ -7,16 +7,15 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace Nomadic.Views.Pages
+namespace Nomadic.Views.Components.PopupComponents
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class SignOut : ContentPage
+    public partial class SavedArticlesSavePopup
     {
-        public SignOut()
+        public SavedArticlesSavePopup()
         {
             InitializeComponent();
-            Shell.SetTabBarIsVisible(this, false);
-            BindingContext = ViewModels.SettingsViewModel.Instance;
+            BindingContext = ViewModels.SavedArticlesViewModels.Instance;
         }
     }
 }

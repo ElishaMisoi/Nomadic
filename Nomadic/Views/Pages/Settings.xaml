@@ -149,6 +149,9 @@
                         Padding="10"
                         BackgroundColor="{DynamicResource SettingsBackgroundColor}"
                         ColumnSpacing="15">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="SavedArticles_Tapped" />
+                        </Grid.GestureRecognizers>
 
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
@@ -182,6 +185,9 @@
                         Padding="10"
                         BackgroundColor="{DynamicResource SettingsBackgroundColor}"
                         ColumnSpacing="15">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="NotImplemented_Tapped" />
+                        </Grid.GestureRecognizers>
 
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
@@ -215,6 +221,9 @@
                         Padding="10"
                         BackgroundColor="{DynamicResource SettingsBackgroundColor}"
                         ColumnSpacing="15">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="NotImplemented_Tapped" />
+                        </Grid.GestureRecognizers>
 
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
@@ -248,6 +257,9 @@
                         Padding="10"
                         BackgroundColor="{DynamicResource SettingsBackgroundColor}"
                         ColumnSpacing="15">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="About_Tapped" />
+                        </Grid.GestureRecognizers>
 
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
@@ -281,6 +293,9 @@
                         Padding="10"
                         BackgroundColor="{DynamicResource SettingsBackgroundColor}"
                         ColumnSpacing="15">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="SendFeedBack_Tapped" />
+                        </Grid.GestureRecognizers>
 
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
@@ -320,6 +335,9 @@
                         Padding="10"
                         BackgroundColor="{DynamicResource SettingsBackgroundColor}"
                         ColumnSpacing="15">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ThemeChangeCommand}" CommandParameter="LightTheme" />
+                        </Grid.GestureRecognizers>
 
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
@@ -340,12 +358,23 @@
                             Text="Light"
                             VerticalOptions="Center" />
 
+                        <Label
+                            Grid.Column="2"
+                            FontFamily="{StaticResource FontAwesomeSolid}"
+                            FontSize="18"
+                            IsVisible="{Binding IsLightTheme}"
+                            Text="{x:Static fontawesome:FontAwesomeIcons.Check}"
+                            VerticalOptions="Center" />
+
                     </Grid>
 
                     <Grid
                         Padding="10"
                         BackgroundColor="{DynamicResource SettingsBackgroundColor}"
                         ColumnSpacing="15">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ThemeChangeCommand}" CommandParameter="DarkTheme" />
+                        </Grid.GestureRecognizers>
 
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
@@ -366,12 +395,23 @@
                             Text="Dark"
                             VerticalOptions="Center" />
 
+                        <Label
+                            Grid.Column="2"
+                            FontFamily="{StaticResource FontAwesomeSolid}"
+                            FontSize="18"
+                            IsVisible="{Binding IsDarkTheme}"
+                            Text="{x:Static fontawesome:FontAwesomeIcons.Check}"
+                            VerticalOptions="Center" />
+
                     </Grid>
 
                     <Grid
                         Padding="10"
                         BackgroundColor="{DynamicResource SettingsBackgroundColor}"
                         ColumnSpacing="15">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ThemeChangeCommand}" CommandParameter="SystemPreferred" />
+                        </Grid.GestureRecognizers>
 
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
@@ -396,7 +436,7 @@
                             Grid.Column="2"
                             FontFamily="{StaticResource FontAwesomeSolid}"
                             FontSize="18"
-                            IsVisible="{Binding IsSystemPreferred}"
+                            IsVisible="{Binding IsSystemPreferredTheme}"
                             Text="{x:Static fontawesome:FontAwesomeIcons.Check}"
                             VerticalOptions="Center" />
 

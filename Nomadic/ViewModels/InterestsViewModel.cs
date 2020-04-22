@@ -1,6 +1,9 @@
 ﻿using NewsAPI.Constants;
+using Newtonsoft.Json;
+using Nomadic.AppSettings;
 using Nomadic.Helpers;
 using Nomadic.Models;
+using Plugin.CloudFirestore;
 using PSC.Xamarin.MvvmHelpers;
 using System;
 using System.Collections.Generic;
@@ -8,12 +11,15 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Xamarin.Essentials;
 
 namespace Nomadic.ViewModels
 {
     public class InterestsViewModel : BaseViewModel
     {
+        #region Properties
+
         /// <summary>
         /// List of Interests
         /// </summary>
@@ -86,22 +92,32 @@ namespace Nomadic.ViewModels
             }
         }
 
+        #endregion
+
+        #region Constructor
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public InterestsViewModel()
         {
             _ = LoadInterestsList();
         }
 
+        #endregion
+
+        #region Methods
+
         /// <summary>
-        /// Task to get user interests
+        /// Function to get user interests
         /// </summary>
         /// <returns>Returns a list of interests</returns>
-        async Task LoadInterestsList()
+        public async Task LoadInterestsList()
         {
             IsBusy = true;
 
             await Task.Run(() => 
             {
-
                 Interests = new ObservableRangeCollection<Interest>
                 {
                     new Interest
@@ -196,13 +212,20 @@ namespace Nomadic.ViewModels
                     },
                 };
 
-                foreach (var interest in Interests)
-                {
-                    var existingInMainFeed = MainFeedViewModel.Instance.TabItems.Where(s => s.Title.ToLower().Equals(interest.Title.ToLower())).Any();
+                var interestsList = DatabaseHelper.GetSavedInterestsList();
 
-                    if (existingInMainFeed)
+                if (interestsList != null && interestsList.Any())
+                {
+                    foreach (var interest in Interests)
                     {
-                        interest.IsInterestAdded = true;
+                        interest.IsInterestAdded = interestsList.Where(s => s.Title.ToLower().Equals(interest.Title.ToLower())).Any();
+                    }
+                }
+                else
+                {
+                    foreach (var interest in Interests)
+                    {
+                        interest.IsInterestAdded = MainFeedViewModel.Instance.TabItems.Where(s => s.Title.ToLower().Equals(interest.Title.ToLower())).Any();
                     }
                 }
 
@@ -213,6 +236,12 @@ namespace Nomadic.ViewModels
             });
         }
 
+        /// <summary>
+        /// Method to Handle fetching of Articles from NewsAPI 
+        /// depending on the user Interests
+        /// </summary>
+        /// <param name="tab">Takes in a Tab Item</param>
+        /// <param name="isRefreshing">True if page is being refreshed</param>
         async Task LoadTabData(Tab tab, bool isRefreshing = false)
         {
             switch (tab.Title.ToLower())
@@ -389,45 +418,6 @@ namespace Nomadic.ViewModels
         }
 
         /// <summary>
-        /// Function to add user interest in MainFeed
-        /// </summary>
-        /// <param name="interest">Takes in an interest</param>
-        public async Task AddUserInterest(Interest interest)
-        {
-            try
-            {
-                var addableTabItem = new Tab { Title = interest.Title, ArticlePage = 1 };
-                var articles = await NewsApiHelper.SearchArticles(new string[] { interest.Title.ToLower() });
-                addableTabItem.Articles.AddRange(articles);
-                addableTabItem.IsBusy = false;
-
-                MainFeedViewModel.Instance.TabItems.Insert(MainFeedViewModel.Instance.TabItems.IndexOf(MainFeedViewModel.Instance.TabItems.LastOrDefault()) + 1, addableTabItem);
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex.Message);
-            }
-        }
-
-        /// <summary>
-        /// Function to remove user interest in MainFeed
-        /// </summary>
-        /// <param name="interest">Takes in an interest</param>
-        public void RemoveUserInterest(Interest interest)
-        {
-            try
-            {
-                var removableTabItem = MainFeedViewModel.Instance.TabItems.Where(s => s.Title.ToLower().Equals(interest.Title.ToLower())).FirstOrDefault();
-
-                MainFeedViewModel.Instance.TabItems.Remove(removableTabItem);
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex.Message);
-            }
-        }
-
-        /// <summary>
         /// Function to filter interests
         /// </summary>
         ObservableRangeCollection<Interest> FilteredRecords(string NewTextValue)
@@ -450,6 +440,141 @@ namespace Nomadic.ViewModels
             return filter;
         }
 
+        /// <summary>
+        /// Reloads page data in InterestArticles page
+        /// </summary>
+        async Task Reload()
+        {
+            await LoadTabData(CurrentItem, isRefreshing: true);
+        }
+
+        /// <summary>
+        /// Saves users Interests in the database and locally
+        /// </summary>
+        /// <param name="interest"></param>
+        public async Task AddUserInterest(Interest interest)
+        {
+            try
+            {
+                interest.Title = interest.Title.ToLower();
+
+                var userInterestsList = DatabaseHelper.GetSavedInterestsList();
+
+                if (userInterestsList == null)
+                {
+                    userInterestsList = new List<Interest>();
+                }
+
+                userInterestsList.Add(interest);
+
+                string userInterestsJson = JsonConvert.SerializeObject(userInterestsList);
+                Settings.AddSetting(Settings.AppPrefrences.Interests, userInterestsJson);
+
+                var addableTabItem = new Tab { Title = interest.Title, ArticlePage = 1 };
+                var articles = await NewsApiHelper.SearchArticles(new string[] { interest.Title.ToLower() });
+                addableTabItem.Articles.AddRange(articles);
+
+                MainFeedViewModel.Instance.TabItems.Insert(MainFeedViewModel.Instance.TabItems.IndexOf(MainFeedViewModel.Instance.TabItems.LastOrDefault()) + 1, addableTabItem);
+
+                string isloggedIn = Settings.GetSetting(Settings.AppPrefrences.IsLoggedIn);
+
+                if (isloggedIn != null || isloggedIn != "False")
+                {
+                    await DatabaseHelper.UpdateUserInterests(userInterestsList).ConfigureAwait(false);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Removes users interest from the database
+        /// </summary>
+        /// <param name="interest"></param>
+        /// <returns></returns>
+        public async Task RemoveUserInterest(Interest interest)
+        {
+            try
+            {
+                var userInterestsList = DatabaseHelper.GetSavedInterestsList();
+
+                userInterestsList.Remove(userInterestsList.Where(s => s.Title.ToLower().Equals(interest.Title.ToLower())).FirstOrDefault());
+
+                string userInterestsJson = JsonConvert.SerializeObject(userInterestsList);
+                Settings.AddSetting(Settings.AppPrefrences.Interests, userInterestsJson);
+
+                var removableTabItem = MainFeedViewModel.Instance.TabItems.Where(s => s.Title.ToLower().Equals(interest.Title.ToLower())).FirstOrDefault();
+
+                MainFeedViewModel.Instance.TabItems.Remove(removableTabItem);
+
+                string isloggedIn = Settings.GetSetting(Settings.AppPrefrences.IsLoggedIn);
+
+                if (isloggedIn != null || isloggedIn != "False")
+                {
+                    await DatabaseHelper.UpdateUserInterests(userInterestsList).ConfigureAwait(false);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Frunction to save user Interest from popup
+        /// </summary>
+        /// <returns></returns>
+        async Task SaveInterest()
+        {
+            if (CurrentInterest.IsInterestAdded)
+            {
+                CurrentInterest.IsInterestAdded = false;
+                Interests.Where(s => s.Equals(CurrentInterest)).FirstOrDefault().IsInterestAdded = false;
+                await RemoveUserInterest(CurrentInterest);
+            }
+            else
+            {
+                CurrentInterest.IsInterestAdded = true;
+                Interests.Where(s => s.Equals(CurrentInterest)).FirstOrDefault().IsInterestAdded = true;
+                await AddUserInterest(CurrentInterest);
+            }
+        }
+
+        /// <summary>
+        /// Command to refresh InsterestAricles page data
+        /// </summary>
+        ICommand _refreshCommand = null;
+
+        public ICommand RefreshCommand
+        {
+            get
+            {
+                return _refreshCommand ?? (_refreshCommand =
+                                          new Xamarin.Forms.Command(async (object obj) => await Reload()));
+            }
+        }
+
+        /// <summary>
+        /// Command to save user interest
+        /// </summary>
+        ICommand _saveInterestCommand = null;
+
+        public ICommand SaveInterestCommand
+        {
+            get
+            {
+                return _saveInterestCommand ?? (_saveInterestCommand =
+                                          new Xamarin.Forms.Command(async (object obj) => await SaveInterest()));
+            }
+        }
+
+        #endregion
+
+        /// <summary>
+        /// Gets an Instance of this class
+        /// </summary>
         public static InterestsViewModel Instance { get; } = new InterestsViewModel();
     }
 }

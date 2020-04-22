@@ -1,8 +1,10 @@
 ﻿using NewsAPI.Constants;
 using Newtonsoft.Json;
+using Nomadic.AppSettings;
 using Nomadic.Helpers;
 using Nomadic.Models;
 using PSC.Xamarin.MvvmHelpers;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -47,7 +49,24 @@ namespace Nomadic.ViewModels
             }
         }
 
+        /// <summary>
+        /// Current Article used in popups
+        /// </summary>
+        Article _currentArticle;
+        public Article CurrentArticle
+        {
+            get { return _currentArticle; }
+            set
+            {
+                _currentArticle = value;
+                OnPropertyChanged();
+            }
+        }
+
+
         #endregion
+
+        #region Constructor
 
         /// <summary>
         /// Constructor
@@ -59,6 +78,8 @@ namespace Nomadic.ViewModels
             _ = GetUserData();
         }
 
+        #endregion
+
         #region methods
 
         /// <summary>
@@ -66,35 +87,50 @@ namespace Nomadic.ViewModels
         /// </summary>
         public async Task GetUserData()
         {
-            TabItems = new ObservableRangeCollection<Tab>();
-
-            // Will make more sense when we begin to save user data locally
-            List<Interest> interests = new List<Interest>
+            if (TabItems.Any())
             {
-                new Interest { Title = "Headlines" },
-                new Interest { Title = "Business" },
-                new Interest { Title = "Technology" },
-                new Interest { Title = "Entertainment" },
-                new Interest {  Title = "Sports" },
-                new Interest { Title = "Science" },
-                new Interest { Title = "Health" },
-            };
-
-            // Will make more sense when we begin to save user data locally
-            foreach(var interest in interests)
-            {
-                TabItems.Add(new Tab
-                {
-                    Title = interest.Title,
-                    ArticlePage = 1
-                });
+                TabItems.Clear();
             }
 
-            CurrentTab = TabItems[0];
+            var userInterestsList = DatabaseHelper.GetSavedInterestsList();
 
-            foreach (var tab in TabItems)
+            if (userInterestsList != null && userInterestsList.Any())
             {
-                await LoadTabData(tab).ConfigureAwait(false);
+                foreach (var interest in userInterestsList)
+                {
+                    TabItems.Add(new Tab
+                    {
+                        Title = interest.Title,
+                        ArticlePage = 1
+                    });
+                }
+
+                CurrentTab = TabItems[0];
+
+                foreach (var tab in TabItems)
+                {
+                    await LoadTabData(tab).ConfigureAwait(false);
+                }
+            }
+            else
+            {
+                // Save locally and load user interests if null
+
+                List<Interest> interests = new List<Interest>
+                {
+                    new Interest { Title = "Headlines" },
+                    new Interest { Title = "Business" },
+                    new Interest { Title = "Technology" },
+                    new Interest { Title = "Entertainment" },
+                    new Interest {  Title = "Sports" },
+                    new Interest { Title = "Science" },
+                    new Interest { Title = "Health" },
+                };
+
+                var interestsJson = JsonConvert.SerializeObject(interests);
+                Settings.AddSetting(Settings.AppPrefrences.Interests, interestsJson);
+
+                await GetUserData();
             }
         }
 
@@ -302,6 +338,56 @@ namespace Nomadic.ViewModels
             }
         }
 
+        /// <summary>
+        /// Function to save article to database
+        /// </summary>
+        async Task SaveArticle()
+        {
+            try
+            {
+                await PopupNavigation.Instance.PopAsync();
+                await DatabaseHelper.SaveArticle(CurrentArticle);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Function to open share modal
+        /// </summary>
+        async Task ShareArticle()
+        {
+            try
+            {
+                await PopupNavigation.Instance.PopAsync();
+                await DialogsHelper.ShareText($"Check out this article: \n\n {CurrentArticle.Url}");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Function to close popup
+        /// </summary>
+        async Task ClosePopup()
+        {
+            try
+            {
+                await PopupNavigation.Instance.PopAsync();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Command for refreshing TabContent
+        /// </summary>
         ICommand _refreshCommand = null;
 
         public ICommand RefreshCommand
@@ -313,6 +399,9 @@ namespace Nomadic.ViewModels
             }
         }
 
+        /// <summary>
+        /// Command to reload all TabItems
+        /// </summary>
         ICommand _reloadCommand = null;
 
         public ICommand ReloadCommand
@@ -324,8 +413,53 @@ namespace Nomadic.ViewModels
             }
         }
 
+        /// <summary>
+        /// Command to save Article from database
+        /// </summary>
+        ICommand _saveArticleCommand = null;
+
+        public ICommand SaveArticleCommand
+        {
+            get
+            {
+                return _saveArticleCommand ?? (_saveArticleCommand =
+                                          new Xamarin.Forms.Command(async (object obj) => await SaveArticle()));
+            }
+        }
+
+        /// <summary>
+        /// Command to open share modal
+        /// </summary>
+        ICommand _shareArticleCommand = null;
+
+        public ICommand ShareArticleCommand
+        {
+            get
+            {
+                return _shareArticleCommand ?? (_shareArticleCommand =
+                                          new Xamarin.Forms.Command(async (object obj) => await ShareArticle()));
+            }
+        }
+
+        /// <summary>
+        /// Command to close popup
+        /// </summary>
+        ICommand _closePopupCommand = null;
+
+        public ICommand ClosePopupCommand
+        {
+            get
+            {
+                return _closePopupCommand ?? (_closePopupCommand =
+                                          new Xamarin.Forms.Command(async (object obj) => await ClosePopup()));
+            }
+        }
+
         #endregion
 
+        /// <summary>
+        /// Gets an Instance of this class
+        /// </summary>
         public static MainFeedViewModel Instance { get; } = new MainFeedViewModel();
 
     }
