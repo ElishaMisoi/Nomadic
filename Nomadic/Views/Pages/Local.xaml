@@ -37,7 +37,7 @@
                 FontAttributes="Bold"
                 FontSize="18"
                 HorizontalOptions="Center"
-                Text="LOCAL NEWS"
+                Text="LOCAL"
                 VerticalOptions="Center" />
         </Grid>
     </Shell.TitleView>
@@ -128,7 +128,7 @@
 
             <ActivityIndicator
                 HorizontalOptions="Center"
-                IsRunning="{Binding IsBusy}"
+                IsRunning="{Binding CurrentItem.IsBusy}"
                 VerticalOptions="Center" />
 
         </Grid>
