@@ -82,7 +82,13 @@
                     TextColor="LightGray"
                     VerticalOptions="End"
                     VerticalTextAlignment="End"
-                    WidthRequest="40" />
+                    WidthRequest="40">
+
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                    </Label.GestureRecognizers>
+
+                </Label>
 
             </Grid>
 
