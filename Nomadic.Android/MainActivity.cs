@@ -8,6 +8,7 @@ using Android.Widget;
 using Android.OS;
 using PanCardView.Droid;
 using Acr.UserDialogs;
+using Rg.Plugins.Popup.Services;
 
 namespace Nomadic.Droid
 {
@@ -19,6 +20,9 @@ namespace Nomadic.Droid
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
+            // Initialize RG.Plugins.Popup
+            Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
+
             base.OnCreate(savedInstanceState);
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
@@ -27,14 +31,14 @@ namespace Nomadic.Droid
             // Initialize CrossCurrentActivity
             Plugin.CurrentActivity.CrossCurrentActivity.Current.Init(this, savedInstanceState);
 
-            // Initialize CardsView
-            CardsViewRenderer.Preserve();
+            // Initializa Xamarin.Auth Presenters
+            global::Xamarin.Auth.Presenters.XamarinAndroid.AuthenticationConfiguration.Init(this, savedInstanceState);
+
+            // Initialize Firebase
+            Firebase.FirebaseApp.InitializeApp(Application.ApplicationContext);
 
             // Initiaize FFImageLoading
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init(enableFastRenderer: true);
-
-            // Initialize Xamarin.Auth Presenters
-            global::Xamarin.Auth.Presenters.XamarinAndroid.AuthenticationConfiguration.Init(this, savedInstanceState);
 
             // Initiaize Arc UserDialogs
             UserDialogs.Init(() => this);
@@ -48,11 +52,13 @@ namespace Nomadic.Droid
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
-        protected override void OnResume()
+        public async override void OnBackPressed()
         {
-            base.OnResume();
-
-            Xamarin.Essentials.Platform.OnResume();
+            if (Rg.Plugins.Popup.Popup.SendBackPressed(base.OnBackPressed))
+            {
+                // Do something if there are some pages in the `PopupStack`
+                await PopupNavigation.Instance.PopAsync();
+            }
         }
     }
 }
