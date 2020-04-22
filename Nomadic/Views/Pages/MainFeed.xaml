@@ -9,8 +9,7 @@
     xmlns:fontawesome="clr-namespace:FontAwesome"
     xmlns:local="clr-namespace:Nomadic.Views.Components.NewsComponents"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Title="Main Feed"
-    BackgroundColor="{DynamicResource ShellBackgroundColor}"
+    BackgroundColor="{DynamicResource PageBackgroundColor}"
     mc:Ignorable="d">
 
     <ContentPage.Resources>
@@ -44,7 +43,7 @@
                 Orientation="Horizontal">
 
                 <controls:CarouselIndicatorView
-                    x:Name="carouselIndicator"
+                    x:Name="carousel"
                     CurrentItem="{Binding CurrentTab}"
                     Items="{Binding TabItems}" />
 
