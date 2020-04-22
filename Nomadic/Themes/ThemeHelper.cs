@@ -1,28 +1,76 @@
-﻿using Nomadic.Interfaces;
+﻿using Nomadic.AppSettings;
+using Nomadic.Helpers;
+using Nomadic.Interfaces;
+using System;
+using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace Nomadic.Themes
 {
     public static class ThemeHelper
     {
-        public static void GetSystemRequestedTheme()
+        public static void GetAppTheme()
         {
-            Xamarin.Essentials.AppTheme appTheme = Xamarin.Essentials.AppInfo.RequestedTheme;
+            string theme = Settings.GetSetting(Settings.AppPrefrences.AppTheme);
 
-            if (appTheme == Xamarin.Essentials.AppTheme.Dark)
+            if (theme != null)
             {
-                Xamarin.Forms.Application.Current.Resources = new DarkTheme();
-                Xamarin.Forms.DependencyService.Get<IStatusBar>().ChangeStatusBarColorToBlack();
-            }
-            else if (appTheme == Xamarin.Essentials.AppTheme.Light)
-            {
-                Xamarin.Forms.Application.Current.Resources = new LightTheme();
-                Xamarin.Forms.DependencyService.Get<IStatusBar>().ChangeStatusBarColorToWhite();
+                var appTheme = EnumsHelper.ConvertToEnum<Settings.Theme>(theme);
+
+                switch (appTheme)
+                {
+                    case Settings.Theme.LightTheme:
+                        ChangeToLightTheme();
+                        break;
+                    case Settings.Theme.DarkTheme:
+                        ChangeToDarkTheme();
+                        break;
+                    case Settings.Theme.SystemPreferred:
+                        ChangeToSystemPreferredTheme();
+                        break;
+                    default:
+                        ChangeToSystemPreferredTheme();
+                        break;
+                }
             }
             else
             {
-                Xamarin.Forms.Application.Current.Resources = new LightTheme();
-                Xamarin.Forms.DependencyService.Get<IStatusBar>().ChangeStatusBarColorToWhite();
+                ChangeToSystemPreferredTheme();
             }
+        }
+
+        public static void ChangeToLightTheme()
+        {
+            Application.Current.Resources = new LightTheme();
+            DependencyService.Get<IStatusBar>().ChangeStatusBarColorToWhite();
+            Settings.AddSetting(Settings.AppPrefrences.AppTheme, EnumsHelper.ConvertToString(Settings.Theme.LightTheme));
+        }
+
+        public static void ChangeToDarkTheme()
+        {
+            Application.Current.Resources = new DarkTheme();
+            DependencyService.Get<IStatusBar>().ChangeStatusBarColorToBlack();
+            Settings.AddSetting(Settings.AppPrefrences.AppTheme, EnumsHelper.ConvertToString(Settings.Theme.DarkTheme));
+        }
+
+        public static void ChangeToSystemPreferredTheme()
+        {
+            Xamarin.Essentials.AppTheme appTheme = AppInfo.RequestedTheme;
+
+            if (appTheme == Xamarin.Essentials.AppTheme.Dark)
+            {
+                ChangeToDarkTheme();
+            }
+            else if (appTheme == Xamarin.Essentials.AppTheme.Light)
+            {
+                ChangeToLightTheme();
+            }
+            else
+            {
+                ChangeToLightTheme();
+            }
+
+            Settings.AddSetting(Settings.AppPrefrences.AppTheme, EnumsHelper.ConvertToString(Settings.Theme.SystemPreferred));
         }
     }
 }
