@@ -33,7 +33,7 @@
             <CollectionView
                 x:Name="collectionView"
                 ItemsSource="{Binding Interests}"
-                SelectionChanged="collectionView_SelectionChanged"
+                SelectionChanged="CollectionView_SelectionChanged"
                 SelectionMode="Single">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Vertical" Span="3" />
