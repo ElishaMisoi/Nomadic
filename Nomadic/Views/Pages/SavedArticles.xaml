@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Nomadic.Views.Pages.SavedArticles"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:fontawesome="clr-namespace:FontAwesome"
+    xmlns:local="clr-namespace:Nomadic.Views.Components.NewsComponents"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    BackgroundColor="{DynamicResource PageBackgroundColor}"
+    mc:Ignorable="d">
+
+    <Shell.TitleView>
+        <Grid BackgroundColor="{DynamicResource ShellBackgroundColor}">
+            <Label
+                FontAttributes="Bold"
+                FontSize="18"
+                Text="SAVED STORIES"
+                VerticalOptions="Center" />
+        </Grid>
+    </Shell.TitleView>
+
+    <ContentPage.Content>
+
+        <Grid>
+
+            <ListView
+                CachingStrategy="RecycleElement"
+                HasUnevenRows="True"
+                IsPullToRefreshEnabled="True"
+                IsRefreshing="{Binding IsRefreshing, Mode=OneWay}"
+                ItemTapped="ListView_ItemTapped"
+                ItemsSource="{Binding Articles}"
+                RefreshCommand="{Binding RefreshCommand}"
+                SelectionMode="None"
+                SeparatorVisibility="None">
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <local:NewsView />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+            </ListView>
+
+            <StackLayout
+                HorizontalOptions="Center"
+                IsVisible="{Binding IsEmpty}"
+                VerticalOptions="Center">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding RefreshCommand}" />
+                </StackLayout.GestureRecognizers>
+
+                <Label
+                    FontFamily="{StaticResource FontAwesomeSolid}"
+                    FontSize="55"
+                    HorizontalOptions="Center"
+                    Text="{x:Static fontawesome:FontAwesomeIcons.MinusCircle}"
+                    TextColor="Gray" />
+
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="25"
+                    HorizontalTextAlignment="Center"
+                    Text="You have no saved stories."
+                    TextColor="Gray" />
+
+            </StackLayout>
+
+            <ActivityIndicator
+                HorizontalOptions="Center"
+                IsRunning="{Binding IsBusy}"
+                VerticalOptions="Center" />
+
+        </Grid>
+
+    </ContentPage.Content>
+
+</ContentPage>
