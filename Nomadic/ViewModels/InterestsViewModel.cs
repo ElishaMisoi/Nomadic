@@ -473,6 +473,7 @@ namespace Nomadic.ViewModels
                 var addableTabItem = new Tab { Title = interest.Title, ArticlePage = 1 };
                 var articles = await NewsApiHelper.SearchArticles(new string[] { interest.Title.ToLower() });
                 addableTabItem.Articles.AddRange(articles);
+                addableTabItem.IsBusy = false;
 
                 MainFeedViewModel.Instance.TabItems.Insert(MainFeedViewModel.Instance.TabItems.IndexOf(MainFeedViewModel.Instance.TabItems.LastOrDefault()) + 1, addableTabItem);
 
