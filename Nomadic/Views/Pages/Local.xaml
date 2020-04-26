@@ -8,7 +8,7 @@
     xmlns:local="clr-namespace:Nomadic.Views.Components.NewsComponents"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="clr-namespace:Nomadic.ViewModels"
-    Title="Local"
+    Title="Local News"
     BackgroundColor="{DynamicResource PageBackgroundColor}"
     mc:Ignorable="d">
 
@@ -128,7 +128,7 @@
 
             <ActivityIndicator
                 HorizontalOptions="Center"
-                IsRunning="{Binding CurrentItem.IsBusy}"
+                IsRunning="{Binding IsBusy}"
                 VerticalOptions="Center" />
 
         </Grid>
