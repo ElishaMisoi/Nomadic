@@ -9,6 +9,10 @@ namespace Nomadic.Themes
 {
     public static class ThemeHelper
     {
+
+        /// <summary>
+        /// Get's and applies the users preferred Theme
+        /// </summary>
         public static void GetAppTheme()
         {
             string theme = Settings.GetSetting(Settings.AppPrefrences.AppTheme);
@@ -39,6 +43,9 @@ namespace Nomadic.Themes
             }
         }
 
+        /// <summary>
+        /// Changes theme to Light Theme
+        /// </summary>
         public static void ChangeToLightTheme()
         {
             Application.Current.Resources = new LightTheme();
@@ -46,6 +53,9 @@ namespace Nomadic.Themes
             Settings.AddSetting(Settings.AppPrefrences.AppTheme, EnumsHelper.ConvertToString(Settings.Theme.LightTheme));
         }
 
+        /// <summary>
+        /// Changes to Dark Theme
+        /// </summary>
         public static void ChangeToDarkTheme()
         {
             Application.Current.Resources = new DarkTheme();
@@ -53,6 +63,9 @@ namespace Nomadic.Themes
             Settings.AddSetting(Settings.AppPrefrences.AppTheme, EnumsHelper.ConvertToString(Settings.Theme.DarkTheme));
         }
 
+        /// <summary>
+        /// Changes to SystemPreferred Theme
+        /// </summary>
         public static void ChangeToSystemPreferredTheme()
         {
             Xamarin.Essentials.AppTheme appTheme = AppInfo.RequestedTheme;
