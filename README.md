@@ -32,7 +32,7 @@ Add your NewsAPI Key in the Constants.cs file at the root of the shared project.
 
 At this point you can build and deploy the Application and you'll have almost all the functionality working 🙃... login will not work though.
 
-If you're interested in login as well, follow the blog post below:
+If you're interested in login as well, follow the blog post below to create your Google Client Ids:
 
 [Google Authentication Blog Post](https://link.medium.com/UsQv6t9O15)
 
