@@ -40,7 +40,7 @@ If you're interested in login as well, follow the blog post below:
 
 I have been writing some blog posts on how to create this app, which can be found below:
 
-- [Part 1](https://link.medium.com/RF1k3lBN15) Setting Up
+- [Part 1:](https://link.medium.com/RF1k3lBN15) Setting Up
 - [Part 2:](https://link.medium.com/Hfp1tLHN15) Using Shell
 - [Part 3:](https://link.medium.com/82PjSwTN15) Using Custom Fonts
 - [Part 4:](https://link.medium.com/bpzxOmZN15) Using Themes
