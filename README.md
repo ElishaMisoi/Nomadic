@@ -16,8 +16,6 @@
 
 ![MS News Light](https://cdn-images-1.medium.com/max/800/1*zvpBF4oq59NUl0iEA02dOg.png)
 
-https://medium.com/@e.kmisoi/replicating-microsoft-news-with-xamarin-25f923ba2277
-
 ## Getting Started
 
 To be able to run the app you will need to do a little setup. No worries, there's a whole blog about it 🙃. But if you want a quick start, check the instructions below:
