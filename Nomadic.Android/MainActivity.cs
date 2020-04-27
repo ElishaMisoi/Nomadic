@@ -31,7 +31,7 @@ namespace Nomadic.Droid
             // Initialize CrossCurrentActivity
             Plugin.CurrentActivity.CrossCurrentActivity.Current.Init(this, savedInstanceState);
 
-            // Initializa Xamarin.Auth Presenters
+            // Initialize Xamarin.Auth Presenters
             global::Xamarin.Auth.Presenters.XamarinAndroid.AuthenticationConfiguration.Init(this, savedInstanceState);
 
             // Initialize Firebase
@@ -45,6 +45,7 @@ namespace Nomadic.Droid
 
             LoadApplication(new App());
         }
+
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
