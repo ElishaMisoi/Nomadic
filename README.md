@@ -6,7 +6,7 @@
 
 ### Screenshots
 
-![Nomadic Main](https://miro.medium.com/max/774/1*Uhsmgy1_iVakYzQwuF6NhQ.gif)
+![Nomadic Main](http://g.recordit.co/XNbffVCSXF.gif)
 
 ![Nomadic Dark](https://cdn-images-1.medium.com/max/800/1*DxXWGIXy2LA4tXgw8n7kfQ.png)
 
