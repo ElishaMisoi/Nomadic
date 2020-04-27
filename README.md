@@ -6,7 +6,7 @@
 
 ### Screenshots
 
-![Nomadic](http://g.recordit.co/611SB9O6N7.gif)
+![Nomadic](https://github.com/Elisha-Misoi/Nomadic/blob/master/main.gif)
 
 ![Nomadic Dark](https://cdn-images-1.medium.com/max/800/1*DxXWGIXy2LA4tXgw8n7kfQ.png)
 
