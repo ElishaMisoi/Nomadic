@@ -10,11 +10,14 @@ namespace Nomadic
     {
         public App()
         {
-            CrossCloudFirestore.Current.Instance.FirestoreSettings = new FirestoreSettings
-            {
-                AreTimestampsInSnapshotsEnabled = false,
-                IsPersistenceEnabled = true
-            };
+            // Set Firestore settings
+            // Call this only when you have've added your Google Services
+            // Link => https://link.medium.com/Z7A83o3O15
+            //CrossCloudFirestore.Current.Instance.FirestoreSettings = new FirestoreSettings
+            //{
+            //    AreTimestampsInSnapshotsEnabled = false,
+            //    IsPersistenceEnabled = true
+            //};
 
             InitializeComponent();
 
